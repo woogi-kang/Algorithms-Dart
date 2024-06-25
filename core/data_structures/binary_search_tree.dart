@@ -1,20 +1,30 @@
 import 'dart:math';
 
-/// ### Node Class
-/// Represents a node in a binary search tree.
-class Node<T extends Comparable<T>> {
+// Binary Search Tree (BST) Implementation with Concept Explanation
 
-    /// # The data value stored in this node.
-    T value;
+/*
+Binary Search Tree Concept:
+A Binary Search Tree is a node-based binary tree data structure which has the following properties:
+- The left subtree of a node contains only nodes with keys lesser than the node's key.
+- The right subtree of a node contains only nodes with keys greater than the node's key.
+- The left and right subtree each must also be a binary search tree.
+- There must be no duplicate nodes.
 
-    /// # Reference to the left child node (may be null).
-    Node<T>? left;
+Advantages:
+- Efficient insertion and deletion (O(log n) for balanced trees)
+- In-order traversal gives sorted output
+- Efficient searching (O(log n) for balanced trees)
 
-    /// # Reference to the right child node (may be null).
-    Node<T>? right;
+Disadvantages:
+- Can become unbalanced, leading to worst-case O(n) operations
+- No constant-time access to elements (unlike arrays)
 
-    Node(this.value, {this.left, this.right}); 
-}
+Time Complexity:
+- Average: O(log n) for search, insert, delete
+- Worst (unbalanced tree): O(n) for search, insert, delete
+
+Space Complexity: O(n) for n nodes
+*/
 
 /// ### BinarySearchTree Class
 /// Represents a binary search tree data structure.
@@ -126,10 +136,10 @@ class BinarySearchTree<T extends Comparable<T>> {
   }
 
   T? _minValue(Node<T>? node) {
-    if(node == null) return null;
+    if (node == null) return null;
 
-    while(node!.left != null) {
-        node = node.left;
+    while (node!.left != null) {
+      node = node.left;
     }
 
     return node.value;
@@ -140,35 +150,49 @@ class BinarySearchTree<T extends Comparable<T>> {
   }
 
   T? _maxValue(Node<T>? node) {
-    if(node == null) return null;
+    if (node == null) return null;
 
-    while(node!.right != null){
-        node = node.right;
+    while (node!.right != null) {
+      node = node.right;
     }
 
     return node.value;
   }
-
 
   void delete(T value) {
     root = _deleteRec(root, value);
   }
 
   Node<T>? _deleteRec(Node<T>? node, T value) {
-    if(node == null) return null;
+    if (node == null) return null;
 
-    if(value.compareTo(node.value) < 0) {
-        node.left = _deleteRec(node.left, value);
-    } else if(value.compareTo(node.value) > 0) {
-        node.right = _deleteRec(node.right, value);
+    if (value.compareTo(node.value) < 0) {
+      node.left = _deleteRec(node.left, value);
+    } else if (value.compareTo(node.value) > 0) {
+      node.right = _deleteRec(node.right, value);
     } else {
-        if(node.left == null) return node.right;
-        if(node.right == null) return node.left;
+      if (node.left == null) return node.right;
+      if (node.right == null) return node.left;
 
-        node.value = _minValue(node.right!)!;
-        node.right = _deleteRec(node.right, node.value);
+      node.value = _minValue(node.right!)!;
+      node.right = _deleteRec(node.right, node.value);
     }
 
     return node;
   }
+}
+
+/// ### Node Class
+/// Represents a node in a binary search tree.
+class Node<T extends Comparable<T>> {
+  /// # The data value stored in this node.
+  T value;
+
+  /// # Reference to the left child node (may be null).
+  Node<T>? left;
+
+  /// # Reference to the right child node (may be null).
+  Node<T>? right;
+
+  Node(this.value, {this.left, this.right});
 }

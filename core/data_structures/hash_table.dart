@@ -132,7 +132,8 @@ class HashTable<K, V> {
   /// Calculates the bucket index for the given `key`.
   int _calculateBucketIndex(K key) {
     int hashCode = key.hashCode;
-    return (hashCode & 0x7FFFFFFF) % _buckets.length; // Bitwise AND for positive index
+    return (hashCode & 0x7FFFFFFF) %
+        _buckets.length; // Bitwise AND for positive index
   }
 
   /// Resizes the hash table by doubling its capacity and rehashing all existing entries.
@@ -149,7 +150,6 @@ class HashTable<K, V> {
     }
   }
 }
-
 
 /// ### HashNode Class
 /// Represents a node in a hash table's linked list chain.

@@ -1,6 +1,20 @@
 import 'dart:math';
 
-import 'node.dart';
+/// ### Node Class
+/// Represents a node in a binary search tree.
+class Node<T extends Comparable<T>> {
+
+    /// # The data value stored in this node.
+    T value;
+
+    /// # Reference to the left child node (may be null).
+    Node<T>? left;
+
+    /// # Reference to the right child node (may be null).
+    Node<T>? right;
+
+    Node(this.value, {this.left, this.right}); 
+}
 
 /// ### BinarySearchTree Class
 /// Represents a binary search tree data structure.

@@ -68,6 +68,9 @@ class Stack<T> {
   /// Checks if the stack is empty.
   bool get isEmpty => _items.isEmpty;
 
+  /// Checks if the stack is not empty.
+  bool get isNotEmpty => _items.isNotEmpty;
+
   /// Returns the number of elements in the stack.
   int get size => _items.length;
 
